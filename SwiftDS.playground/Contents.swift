@@ -31,6 +31,10 @@ class LinkedList {
         self.head = head
     }
     
+    init() {
+        self.head = nil
+    }
+    
     /// Appending nodes to the linked list
     func append(_ node: Node) {
         //early return
@@ -191,4 +195,3 @@ while let availableNode: Node = node {
     print(availableNode.value)
     node = availableNode.next
 }
-
