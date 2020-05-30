@@ -38,7 +38,7 @@ class LinkedList {
         self.head = head
     }
     
-    
+    /// Appending nodes to the linked list
     func append(_ node: Node) {
         //early return
         guard head != nil else {
@@ -55,6 +55,7 @@ class LinkedList {
         currentNode?.next = node
     }
 
+    ///appending using if-let
     func append2(_ node: Node) {
         if let headNode: Node = head {
             var currentNode: Node? = headNode
@@ -66,21 +67,114 @@ class LinkedList {
             head = node
         }
     }
+    
+    /// Getting an individual node
+    func getNode(atPosition position: Int) -> Node? {
+        if position == 0 {
+            return nil
+        }
+        var startPosition = 1
+        var node: Node? = head
+        while let _ = node {
+            if startPosition == position {
+                break
+            } else {
+                startPosition += 1
+                node = node?.next
+            }
+        }
+        
+        return node
+    }
+    
+    /// Inserting a node in a given position
+    func insertNode(_ node: Node, at position: Int) {
+        var linkNode: Node? = head
+        var startPos = 1
+        while let _ = linkNode {
+            if position == 1 {
+                node.next = head
+                head = node
+                return
+            }
+            // for other positions
+            if startPos == position - 1 {
+                break
+            } else {
+                startPos += 1
+                linkNode = linkNode?.next
+            }
+        }
+        if let nextNode: Node = linkNode?.next {
+            node.next = nextNode
+        }
+        linkNode?.next = node
+        
+    }
+    
+    //Delete the first node with the given value
+    func deleteNode(withValue value: Int) {
+        if let node: Node = head {
+            if node.value as? Int == value {
+                head = head?.next
+                return
+            }
+        }
+        var node = head
+        while let n: Node = node?.next {
+            if n.value as? Int == value {
+                node?.next = node?.next?.next
+                return
+            } else {
+                node = node?.next
+            }
+        }
+    }
 }
 
 /*:
  ## Testing the implementation
- First we test `append` function, followed by the implementation of `append2`
+ Testing the functions we wrote above
  */
-var linkedList = LinkedList(head: Node(value: "Bhaskar"))
-linkedList.append(Node(value: "Hell ya"))
-linkedList.append(Node(value: "Hell to you"))
+/*:
+ Declaring new nodes
+ */
+
+var n1 = Node(value: 1)
+var n2 = Node(value: 2)
+var n3 = Node(value: 3)
+var n4 = Node(value: 4)
+
+/*:
+ Declaring a new linked list
+ */
+
+var linkedList = LinkedList(head: n1)
+linkedList.append(n2)
+linkedList.append(n3)
+
+/// Testing the getNode() function
+
+print(linkedList.getNode(atPosition: 3)!.value)
 
 
+/// Inserting a new node at position 3
+linkedList.insertNode(n4, at: 3)
+print(linkedList.getNode(atPosition: 3)!.value)
+
+linkedList.append(Node(value: 1000))
+
+/// Deleting a few nodes, including the first and the last node
+linkedList.deleteNode(withValue: 4)
+linkedList.deleteNode(withValue: 1)
+linkedList.deleteNode(withValue: 1000)
+
+/// Printing all the nodes in the linked list
 var node = linkedList.head
-while node != nil {
-    print(node?.value ?? "NA")
-    node = node?.next
+
+while let availableNode: Node = node {
+    print(availableNode.value)
+    node = availableNode.next
 }
 
 var ll2 = LinkedList(head: Node(value: "Sanjana"))
@@ -92,3 +186,4 @@ while let availableNode: Node = node {
     print(availableNode.value)
     node = availableNode.next
 }
+
