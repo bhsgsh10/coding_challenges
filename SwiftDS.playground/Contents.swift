@@ -15,13 +15,6 @@ class Node {
         self.value = value
     }
 }
-
-let node1 = Node(value: "Horse")
-let node2 = Node(value: "Shoe")
-node1.next = node2
-
-print(node2.value)
-
 /*:
  Next, we define the LinkedList class, which will utilize the Node class we have already created.
  */
@@ -89,15 +82,21 @@ class LinkedList {
     
     /// Inserting a node in a given position
     func insertNode(_ node: Node, at position: Int) {
+        guard position > 0 else {
+            return
+        }
+        
+        // if we're trying to insert something at the head
+        if position == 1 {
+            node.next = head
+            head = node
+            return
+        }
+        
+        // for other positions
         var linkNode: Node? = head
         var startPos = 1
         while let _ = linkNode {
-            if position == 1 {
-                node.next = head
-                head = node
-                return
-            }
-            // for other positions
             if startPos == position - 1 {
                 break
             } else {
@@ -130,6 +129,16 @@ class LinkedList {
             }
         }
     }
+    
+    func printAllNodes() {
+        /// Printing all the nodes in the linked list
+        var node = head
+
+        while let availableNode: Node = node {
+            print(availableNode.value)
+            node = availableNode.next
+        }
+    }
 }
 
 /*:
@@ -156,7 +165,7 @@ linkedList.append(n3)
 /// Testing the getNode() function
 
 print(linkedList.getNode(atPosition: 3)!.value)
-
+linkedList.printAllNodes()
 
 /// Inserting a new node at position 3
 linkedList.insertNode(n4, at: 3)
@@ -164,24 +173,20 @@ print(linkedList.getNode(atPosition: 3)!.value)
 
 linkedList.append(Node(value: 1000))
 
+linkedList.printAllNodes()
+
 /// Deleting a few nodes, including the first and the last node
 linkedList.deleteNode(withValue: 4)
 linkedList.deleteNode(withValue: 1)
 linkedList.deleteNode(withValue: 1000)
+linkedList.printAllNodes()
 
-/// Printing all the nodes in the linked list
-var node = linkedList.head
-
-while let availableNode: Node = node {
-    print(availableNode.value)
-    node = availableNode.next
-}
 
 var ll2 = LinkedList(head: Node(value: "Sanjana"))
 ll2.append2(Node(value: "To the"))
 ll2.append2(Node(value: "railway station"))
 
-node = ll2.head
+var node = ll2.head
 while let availableNode: Node = node {
     print(availableNode.value)
     node = availableNode.next
