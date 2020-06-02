@@ -19,7 +19,7 @@ This problem can be solved using a dynamic programming methodology.
 We can approach the problem in two ways, as indicated in the question. Both of them are given below. */
 
 /*
-The first approach uses two loops, an additional array, which is initialized with 1s at the beginning. The values in that array
+The first approach uses an additional array, which is initialized with 1s at the beginning. The values in that array
 are updated to indicate the max length of a subsequence running upto every index. Finally, we take a max of all the values in
 that array to get the answer.
 */
