@@ -4,21 +4,19 @@ func binarySearch(_ array: [Int], value: Int) -> Int? {
     // Your code goes here
     var startIndex = 0
     var endIndex = array.count - 1
-    var result: Int?
     
-    while startIndex < endIndex {
+    while startIndex <= endIndex {
         let mid = (startIndex + endIndex) / 2
         if array[mid] < value {
             print("Increasing start Index")
             startIndex = mid + 1
         } else if array[mid] > value {
-            endIndex = mid
+            endIndex = mid - 1
         } else {
-            result = mid
-            break
+            return mid
         }
     }
-    return result
+    return nil
 }
 
 // Test cases
