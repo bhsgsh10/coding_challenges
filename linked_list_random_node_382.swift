@@ -37,6 +37,7 @@ class Solution {
         Note that the head is guaranteed to be not null, so it contains at least one node. */
     var listLength: Int = 0
     var linkedList: ListNode?
+    // calculate the length of the given linked list which we will use later to generate the random number
     init(_ head: ListNode?) {
         self.linkedList = head
         var node = head
@@ -50,9 +51,11 @@ class Solution {
     func getRandom() -> Int {
         //Normally we'd check if the head is nil, but it is given in the definition of ListNode that the head always contains 
         // atleast one node.
+        //Generate a random number between 1 and the length of the list
         let randomInt = Int.random(in: 1..<self.listLength+1)
         var node = self.linkedList
         var counter = 1
+        // Iterate through the list till we find the node at randomInt position
         while counter < randomInt && node != nil {
             counter += 1
             node = node?.next
