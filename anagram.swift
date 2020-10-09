@@ -6,10 +6,6 @@ class Solution {
         
         var isAna = true
         
-        
-        
-        // let tChars = Array(t)
-        // let sChars = Array(s)
         var sCharFreq: [Character: Int] = [:]
         
         for sChar in s {

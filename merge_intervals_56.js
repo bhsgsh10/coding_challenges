@@ -16,8 +16,8 @@ NOTE: input types have been changed on April 15, 2019. Please reset to default c
 https://leetcode.com/problems/merge-intervals/
 */
 
-var merge = function(intervals) {
-    intervals.sort(function(a,b) {
+var merge = (intervals) => {
+    intervals.sort((a,b) => {
         return a[0] - b[0]
     })
     

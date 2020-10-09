@@ -22,7 +22,7 @@ class Node {
  There are two methods provided that append elements to the linked list.
  - `append()`: Uses guard statement for early return
  - `append2()`: Used if-let
- `append`is the preferred method in this case as it is more optimal.
+ `append` is the preferred method in this case as it is more optimal.
 */
 class LinkedList {
     var head: Node?
